@@ -1,37 +1,135 @@
-## Welcome to GitHub Pages
+# SyncedTime
 
-You can use the [editor on GitHub](https://github.com/UndefinedN00B/SyncedTime/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This is a **Module Script** That should be placed in **Replicated Storage**.
+This only works in **ROBLOX** using **ROBLOX Lua functions** and cannot be run using regural Lua.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This module script will be accurate in ±30ms in time. 
+*This accuracy will highly depend on the ping on the client to server*
 
-### Markdown
+This will also be very accurate on Client to Client Synchronization.
+*Again, will vary depending on client(s) ping*
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## How to setup
 
-```markdown
-Syntax highlighted code block
+On a server script:
+ * Require this module
+ * Call `Init()`
+ 
+`
+local SyncedTime = require(game.ReplicatedStorage.SyncedTime)
+SyncedTime:Init()
+`
 
-# Header 1
-## Header 2
-### Header 3
+*`Init()` should only be called once on the server. Calling it multiple times might cause bugs.*
 
-- Bulleted
-- List
+On Local Script:
+ * Require this module
+ * Call `Init()`
+ * To get Synchronzied Time, call `GetTime()`
+ 
+`
+local SyncedTime = require(game.ReplicatedStorage.SyncedTime)
+SyncedTime:Init() -- Does Yeild
 
-1. Numbered
-2. List
+print(SyncedTime:GetTime()) -- Prints Synchronized time
+`
 
-**Bold** and _Italic_ and `Code` text
+*`Init()` can be called multiple times on the client. 
+Every time you call `Init()`, the client recalibrates the difference.
+This can be good and bad.*
 
-[Link](url) and ![Image](src)
-```
+## API
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+#### `Init()`
 
-### Jekyll Themes
+`
+SyncedTime:Init(bool useLocalAverage, int localCheckRate, bool resetGlobalAverage)
+`
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/UndefinedN00B/SyncedTime/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Calling `Init()` on the client multiple times will recalibrate the difference.
 
-### Support or Contact
+It is recommended to call `Init()` when the player will not have high ping.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+It is highly recommended to run a game loaded check before running `Init()`
+
+If you used `GetTime()` before, and called `Init()` again, you will get different SyncedTimes;
+this is because the difference is updated when you call `Init()`.
+If you are comparng time a lot, and want it to be really accurate, 
+it is recommended to use `Init()` only once.
+
+You should always call `Init()` once, and only once on the server.
+`Init()` should be called on the server without any yeild or wait.
+
+##### Parameters
+
+`
+Bool useLocalAverage [Optional]
+`
+
+`
+Deafult: false
+`
+
+This is useful if you are trying to run `Init()` multiple times.
+
+This states if it should find the average using the previous values it found from calling or not `Init()`
+
+By deafult, it will use previous values from calling `Init()` (globalAverage)
+
+`
+int localCheckRate [Optional]
+`
+
+`
+Deafult: 10
+`
+
+To compinsate with ping, we usually Invoke the server for the difference multiple times.
+This value will determine how many times we're Invoking the server to get an average value.
+
+This helps if your ping is high sometimes and low other times.
+
+**Note: The higher the number is, 
+the more accurate your value will be but the higher it is, 
+the longer the yeild in `Init()` will be.**
+
+`
+bool resetGlobalAverage
+`
+
+`
+deafult: false
+`
+
+This states if it should reset the globalAverage (to a nil table) after `Init()` has returned something.
+
+If you are looking to use a different average table every time, set `useLocalAverage` to true instead.
+
+#### `GetTime()`
+
+`
+SyncedTime:GetTime()
+`
+
+This can be called both in the Cleint and the Server.
+
+If you are calling this on the server, it is recommended to use `tick()` instead; 
+as it will return the same value.
+
+If you are using Synced time on the client, then use call function.
+
+If you are using time on the client that never needs to be synced or differentiated with the server, use `tick()` instead.
+
+### How to run a game loaded check
+
+`
+repeat wait() until game:IsLoaded()
+`
+
+`
+-- Code here will run after the game is loaded on the client
+`
+
+`
+-- Call Init() here
+`
