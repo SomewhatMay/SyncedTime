@@ -42,9 +42,9 @@ This can be good and bad.*
 
 #### `Init()`
 
-`
+```
 SyncedTime:Init(bool useLocalAverage, int localCheckRate, bool resetGlobalAverage)
-`
+```
 
 Calling `Init()` on the client multiple times will recalibrate the difference.
 
@@ -62,13 +62,11 @@ You should always call `Init()` once, and only once on the server.
 
 ##### Parameters
 
-`
+```
 Bool useLocalAverage [Optional]
-`
 
-`
 Deafult: false
-`
+```
 
 This is useful if you are trying to run `Init()` multiple times.
 
@@ -76,13 +74,11 @@ This states if it should find the average using the previous values it found fro
 
 By deafult, it will use previous values from calling `Init()` (globalAverage)
 
-`
+```
 int localCheckRate [Optional]
-`
 
-`
 Deafult: 10
-`
+```
 
 To compinsate with ping, we usually Invoke the server for the difference multiple times.
 This value will determine how many times we're Invoking the server to get an average value.
@@ -93,13 +89,11 @@ This helps if your ping is high sometimes and low other times.
 the more accurate your value will be but the higher it is, 
 the longer the yeild in `Init()` will be.**
 
-`
+```
 bool resetGlobalAverage
-`
 
-`
 deafult: false
-`
+```
 
 This states if it should reset the globalAverage (to a nil table) after `Init()` has returned something.
 
@@ -107,9 +101,9 @@ If you are looking to use a different average table every time, set `useLocalAve
 
 #### `GetTime()`
 
-`
+```
 SyncedTime:GetTime()
-`
+```
 
 This can be called both in the Cleint and the Server.
 
@@ -122,14 +116,8 @@ If you are using time on the client that never needs to be synced or differentia
 
 ### How to run a game loaded check
 
-`
+```
 repeat wait() until game:IsLoaded()
-`
-
-`
 -- Code here will run after the game is loaded on the client
-`
-
-`
 -- Call Init() here
-`
+```
