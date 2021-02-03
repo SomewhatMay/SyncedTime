@@ -47,11 +47,8 @@ It is recommended to call `Init()` when the player wont have high ping.
 It is highly recommended to run a game loaded check before runnign `Init()`
 
 If you used `GetTime()` before, and called `Init()` again, you will get different SyncedTimes;
-
 this is because the difference is updated when you call `Init()`.
-
 If you are comparng time a lot, and want it to be really accurate, 
-
 it is recommended to use `Init()` only once.
 
 You should always call `Init()` once, and only once on the server.
@@ -65,7 +62,9 @@ Bool useLocalAverage [Optional]
 Deafult: false
 ```
 This is useful if you are trying to run `Init()` multiple times.
+
 This states if it should find the average using the previous values it found from calling or not `Init()`
+
 By deafult, it will use previous values from calling `Init()` (globalAverage)
 
 ```
@@ -75,6 +74,7 @@ Deafult: 10
 ```
 To compinsate with ping, we usually Invoke the server for the difference multiple times.
 This value will determine how many times we're Invoking the server to get an average value.
+
 This helps if your ping is high sometimes and low other times.
 
 **Note: The higher the number is, 
@@ -88,6 +88,7 @@ deafult: false
 ```
 
 This states if it should reset the globalAverage (to a nil table) after `Init()` has returned something.
+
 If you are looking to use a different average table every time, set `useLocalAverage` to true instead.
 
 #### `GetTime()`
@@ -95,9 +96,12 @@ If you are looking to use a different average table every time, set `useLocalAve
 SyncedTime:GetTime()
 ```
 This can be called both in the Cleint and the Server.
+
 If you are calling this on the server, it is recommended to use `tick()` instead; 
 as it will return the same value.
+
 If you are using Synced time, then use this function.
+
 If you are using time that never needs to be synced with the server, use `tick()` instead.
 
 ### How to run a game loaded check
