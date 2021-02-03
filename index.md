@@ -15,10 +15,10 @@ On a server script:
  * Require this module
  * Call `Init()`
  
-`
+```
 local SyncedTime = require(game.ReplicatedStorage.SyncedTime)
 SyncedTime:Init()
-`
+```
 
 *`Init()` should only be called once on the server. Calling it multiple times might cause bugs.*
 
