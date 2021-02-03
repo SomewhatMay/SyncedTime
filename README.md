@@ -41,11 +41,17 @@ This can be good and bad.*
 SyncedTime:Init(bool useLocalAverage, int localCheckRate, bool resetGlobalAverage)
 ```
 Calling `Init()` on the client multiple times will recalibrate the difference.
+
 It is recommended to call `Init()` when the player wont have high ping.
+
 It is highly recommended to run a game loaded check before runnign `Init()`
+
 If you used `GetTime()` before, and called `Init()` again, you will get different SyncedTimes;
+
 this is because the difference is updated when you call `Init()`.
+
 If you are comparng time a lot, and want it to be really accurate, 
+
 it is recommended to use `Init()` only once.
 
 You should always call `Init()` once, and only once on the server.
