@@ -100,9 +100,9 @@ This can be called both in the Cleint and the Server.
 If you are calling this on the server, it is recommended to use `tick()` instead; 
 as it will return the same value.
 
-If you are using Synced time, then use this function.
+If you are using Synced time on the client, then use call function.
 
-If you are using time that never needs to be synced with the server, use `tick()` instead.
+If you are using time on the client that never needs to be synced or differentiated with the server, use `tick()` instead.
 
 ### How to run a game loaded check
 ```lua
