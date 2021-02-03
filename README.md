@@ -1,6 +1,6 @@
 # SyncedTime
 
-This is a **Module Script** That should be entered in **Replicated Storage**.
+This is a **Module Script** That should be placed in **Replicated Storage**.
 This only works in **ROBLOX** using **ROBLOX Lua functions** and cannot be run using regural Lua.
 
 This module script will be accurate in ±30ms in time. 
