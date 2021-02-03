@@ -107,4 +107,6 @@ If you are using time on the client that never needs to be synced or differentia
 ### How to run a game loaded check
 ```lua
 repeat wait() until game:IsLoaded()
+-- Code here will run after the game is loaded on the client
+-- Call Init() here
 ```
