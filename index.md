@@ -27,12 +27,12 @@ On Local Script:
  * Call `Init()`
  * To get Synchronzied Time, call `GetTime()`
  
-`
+```
 local SyncedTime = require(game.ReplicatedStorage.SyncedTime)
 SyncedTime:Init() -- Does Yeild
 
 print(SyncedTime:GetTime()) -- Prints Synchronized time
-`
+```
 
 *`Init()` can be called multiple times on the client. 
 Every time you call `Init()`, the client recalibrates the difference.
