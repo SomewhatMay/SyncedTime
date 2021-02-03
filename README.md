@@ -64,7 +64,9 @@ You should always call `Init()` once, and only once on the server.
 
 `
 Bool useLocalAverage [Optional]
+`
 
+`
 Deafult: false
 `
 
@@ -76,7 +78,9 @@ By deafult, it will use previous values from calling `Init()` (globalAverage)
 
 `
 int localCheckRate [Optional]
+`
 
+`
 Deafult: 10
 `
 
@@ -91,7 +95,9 @@ the longer the yeild in `Init()` will be.**
 
 `
 bool resetGlobalAverage
+`
 
+`
 deafult: false
 `
 
@@ -118,6 +124,12 @@ If you are using time on the client that never needs to be synced or differentia
 
 `
 repeat wait() until game:IsLoaded()
+`
+
+`
 -- Code here will run after the game is loaded on the client
+`
+
+`
 -- Call Init() here
 `
