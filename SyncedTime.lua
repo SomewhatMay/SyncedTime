@@ -21,7 +21,7 @@ local rus = game:GetService("RunService")
 local comms
 local start
 
-function m:Init(uselocalAverage, localCheckRate, resetGlobalAverage)
+function m.Init(useLocalAverage, localCheckRate, resetGlobalAverage)
 	local initCallTick = tick()
 	
 	if rus:IsServer() then
@@ -87,7 +87,7 @@ averageStarts Table:
 	]]):format(tostring(rus:IsServer()), start.Value, tick() - initCallTick), averageStarts, "\n\n")
 end
 
-function m:GetTime()
+function m.GetTime()
 	return tick() - start.Value
 end
 
